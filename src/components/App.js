@@ -1,7 +1,5 @@
 import React from 'react'
-import Post from './Post'
 import Teams from './Teams'
-import main from './css/App.css'
 
 export default class App extends React.Component {
   render() {

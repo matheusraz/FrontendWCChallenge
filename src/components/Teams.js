@@ -1,5 +1,6 @@
 import React from 'react'
 import { Accordion, AccordionItem } from 'react-sanfona';
+import Matches from './Matches'
 
 export default class Teams extends React.Component {
     constructor(props) {
@@ -10,17 +11,23 @@ export default class Teams extends React.Component {
             teamChoice: '',
             matchesByTeam: []
         };
+        this.onClickTeam = this.onClickTeam.bind(this);
+    }
+
+    onClickTeam(e) {
+      this.setState({teamChoice: e.target.value});
+      e.preventDefault();
     }
 
     componentDidMount() {
 
-        fetch(`http://localhost:8080/teams`)
+        fetch(`http://172.17.0.3:8080/teams`)
         .then(results => {
             return results.json();
         }).then(data => {
-            console.log(data.results);
-            //console.log('Times:',this.state.teams);
-            //this.setState({teams: data.results})
+            //console.log(data);
+            this.setState({teams: data})
+            console.log('Times:',this.state.teams);
         })
     }
 
@@ -31,9 +38,9 @@ export default class Teams extends React.Component {
           <Accordion>
             {this.state.teams.map(item => {
               return (
-                <AccordionItem title={`Item ${item.country}`} expanded={item.group_id === 1}>
-                  <div>
-                    {`Item ${item.country} content`}
+                <AccordionItem value={`${item.country}`} title={`${item.country}`} onExpand={this.onClickTeam}>
+                <div>
+                  <Matches text={`${this.state.teamChoice}`} />
                   </div>
                 </AccordionItem>
               );

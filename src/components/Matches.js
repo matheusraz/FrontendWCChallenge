@@ -10,16 +10,17 @@ export default class Matches extends React.Component {
         }
     }
 
-    componentDidMount() {
-
-        fetch(`https://localhost:8080/${this.props.text}`)
-        .then(results => {
-            return results.json();
-        }).then(data => {
-            //console.log(data.results);
-            this.setState({matches: data.results})
-            console.log('Partidas:',this.state.matches);
-        })
+    componentWillMount() {
+        if(this.props.text !== ''){
+            fetch(`https://172.17.0.3:8080/matches/${this.props.text}`)
+            .then(results => {
+                return results.json();
+            }).then(data => {
+                //console.log(data.results);
+                this.setState({matches: data})
+                console.log('Partidas:',this.state.matches);
+            })
+        }
     }
 
     render(){
