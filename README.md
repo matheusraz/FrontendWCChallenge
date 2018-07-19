@@ -1,4 +1,4 @@
-# Prática React.js + Node.js 
+# WCCChallenge
 ## (*FRONT-END*)
 
-[Back-End](https://github.com/matheusraz/BackEnd_ReactNode)
+[Back-End](https://github.com/matheusraz/BackendWCCChallenge)
