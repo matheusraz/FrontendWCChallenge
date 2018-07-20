@@ -16,7 +16,7 @@ export default class TeamsMatches extends React.Component {
 
     onClickTeam(item) {
       this.setState({teamChoice: item});
-      fetch(`http://localhost:8080/matches/${item}`)
+      fetch(`http://172.17.0.3:8080/matches/${item}`)
             .then(resultsMatch => {
                 return resultsMatch.json();
             }).then(dataMatch => {
@@ -28,7 +28,7 @@ export default class TeamsMatches extends React.Component {
 
     componentDidMount() {
 
-        fetch(`http://localhost:8080/teams`)
+        fetch(`http://172.17.0.3:8080/teams`)
         .then(results => {
             return results.json();
         }).then(data => {
